@@ -25,14 +25,17 @@ export function addDecks(decks) {
   };
 }
 
-export function handleAddDeck(name) {
+export function handleAddDeck(name, cb) {
   return dispatch => {
     const deck = {
       name,
       id: Date.now(),
       cards: []
     };
-    saveDeck(deck).then(() => dispatch(addDeck(deck)));
+    saveDeck(deck).then(() => {
+      dispatch(addDeck(deck));
+      cb(deck);
+    });
   };
 }
 
