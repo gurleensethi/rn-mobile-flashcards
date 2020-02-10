@@ -28,10 +28,8 @@ class Decks extends React.Component {
     );
   };
 
-  openDeckPage = deck => {
-    console.log(deck);
-    const { navigation } = this.props;
-    console.log(navigation);
+  openDeckPage = deck => {    
+    const { navigation } = this.props;    
     navigation.push("Deck Page", deck);
   };
 

@@ -1,6 +1,6 @@
 import { ADD_DECK, ADD_CARD } from "../actions/decks";
 
-export default function decks(state = [], action) {
+export default function decks(state = [], action) {  
   switch (action.type) {
     case ADD_DECK: {
       const id = Date.now();
