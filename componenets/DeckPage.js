@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import PrimaryButton from "./PrimaryButton";
 
 class DeckPage extends React.Component {
+  openAddCardPage = () => {
+    const { navigation, deck } = this.props;
+    navigation.push("Add Card", deck);
+  };
+
   render() {
     const { deck } = this.props;
     return (
@@ -14,7 +19,13 @@ class DeckPage extends React.Component {
         </Text>
         <PrimaryButton
           text="Add Card"
-          style={{ margin: 0, marginTop: 20, backgroundColor: "blue" }}
+          style={{
+            margin: 0,
+            marginTop: 20,
+            backgroundColor: "blue",
+            padding: 8
+          }}
+          onPress={this.openAddCardPage}
         />
       </View>
     );
