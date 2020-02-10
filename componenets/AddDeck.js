@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { StyleSheet, View, Text } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import PrimaryButton from "./PrimaryButton";
-import { addDeck } from "../actions/decks";
+import { handleAddDeck } from "../actions/decks";
 
 class AddDeck extends React.Component {
   state = {
@@ -55,7 +55,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNewDeck: name => dispatch(addDeck(name))
+    addNewDeck: name => dispatch(handleAddDeck(name))
   };
 }
 

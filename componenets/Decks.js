@@ -16,7 +16,7 @@ class Decks extends React.Component {
     return (
       <TouchableOpacity
         style={styles.listItem}
-        key={item}
+        key={item.id}
         activeOpacity={0.7}
         onPress={() => this.openDeckPage(deck)}
       >
@@ -28,8 +28,8 @@ class Decks extends React.Component {
     );
   };
 
-  openDeckPage = deck => {    
-    const { navigation } = this.props;    
+  openDeckPage = deck => {
+    const { navigation } = this.props;
     navigation.push("Deck Page", deck);
   };
 
@@ -47,6 +47,7 @@ class Decks extends React.Component {
           <FlatList
             data={Object.keys(decks)}
             renderItem={this.renderDeckItem}
+            keyExtractor={item => `${item}`}
           />
         ) : (
           <View style={styles.infoTextContainer}>

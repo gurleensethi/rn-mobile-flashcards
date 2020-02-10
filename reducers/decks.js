@@ -1,16 +1,14 @@
-import { ADD_DECK, ADD_CARD } from "../actions/decks";
+import { ADD_DECK, ADD_CARD, ADD_DECKS } from "../actions/decks";
 
-export default function decks(state = [], action) {  
+export default function decks(state = [], action) {
   switch (action.type) {
+    case ADD_DECKS: {
+      return action.decks;
+    }
     case ADD_DECK: {
-      const id = Date.now();
       return {
         ...state,
-        [id]: {
-          id,
-          name: action.name,
-          cards: []
-        }
+        [action.deck.id]: action.deck
       };
     }
     case ADD_CARD: {
@@ -19,7 +17,7 @@ export default function decks(state = [], action) {
         ...state,
         [deckId]: {
           ...state[deckId],
-          cards: state[deckId].cards.concat([{ ...card, id: Date.now() }])
+          cards: state[deckId].cards.concat([card])
         }
       };
     }

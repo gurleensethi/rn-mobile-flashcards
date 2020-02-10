@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { StyleSheet, View, Text } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import PrimaryButton from "./PrimaryButton";
-import { addCard } from "../actions/decks";
+import { handleAddCard } from "../actions/decks";
 
 class AddCard extends React.Component {
   state = {
@@ -66,7 +66,7 @@ function mapStateToProps(state, { route }) {
 function mapDispatchToProps(dispatch, { route }) {
   const { id: deckId } = route.params;
   return {
-    addNewCard: card => dispatch(addCard(deckId, card))
+    addNewCard: card => dispatch(handleAddCard(deckId, card))
   };
 }
 

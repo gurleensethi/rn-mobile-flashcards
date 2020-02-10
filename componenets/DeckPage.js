@@ -9,6 +9,11 @@ class DeckPage extends React.Component {
     navigation.push("Add Card", deck);
   };
 
+  openTakeQuizPage = () => {
+    const { navigation, deck } = this.props;
+    navigation.push("Take Quiz", deck);
+  };
+
   render() {
     const { deck } = this.props;
     return (
@@ -17,6 +22,16 @@ class DeckPage extends React.Component {
         <Text style={styles.subTitle}>
           {deck.cards.length} card{deck.cards.length !== 1 && "s"}
         </Text>
+        <PrimaryButton
+          text="Take Quiz"
+          style={{
+            margin: 0,
+            marginTop: 20,
+            backgroundColor: "purple",
+            padding: 8
+          }}
+          onPress={this.openTakeQuizPage}
+        />
         <PrimaryButton
           text="Add Card"
           style={{
