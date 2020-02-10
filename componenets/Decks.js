@@ -9,23 +9,31 @@ import {
   TouchableOpacity
 } from "react-native";
 import PrimaryButton from "./PrimaryButton";
+import Deck from "./Deck";
 
 class Decks extends React.Component {
   renderDeckItem = ({ item }) => {
     const deck = this.props.decks[item];
     return (
-      <TouchableOpacity
-        style={styles.listItem}
+      <Deck
+        deck={deck}
+        openDeckPage={() => this.openDeckPage(deck)}
         key={item.id}
-        activeOpacity={0.7}
-        onPress={() => this.openDeckPage(deck)}
-      >
-        <Text style={{ fontSize: 24, color: "white" }}>{deck.name}</Text>
-        <Text style={{ fontSize: 18, color: "white" }}>
-          {deck.cards.length} card{deck.cards.length !== 1 && "s"}
-        </Text>
-      </TouchableOpacity>
+      />
     );
+    // return (
+    //   <TouchableOpacity
+    //     style={styles.listItem}
+    //     key={item.id}
+    //     activeOpacity={0.7}
+    //     onPress={() => this.openDeckPage(deck)}
+    //   >
+    //     <Text style={{ fontSize: 24, color: "white" }}>{deck.name}</Text>
+    //     <Text style={{ fontSize: 18, color: "white" }}>
+    //       {deck.cards.length} card{deck.cards.length !== 1 && "s"}
+    //     </Text>
+    //   </TouchableOpacity>
+    // );
   };
 
   openDeckPage = deck => {
