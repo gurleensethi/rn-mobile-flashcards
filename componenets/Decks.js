@@ -12,18 +12,27 @@ import PrimaryButton from "./PrimaryButton";
 
 class Decks extends React.Component {
   renderDeckItem = ({ item }) => {
+    const deck = this.props.decks[item];
     return (
       <TouchableOpacity
         style={styles.listItem}
-        key={item.index}
+        key={item}
         activeOpacity={0.7}
+        onPress={() => this.openDeckPage(deck)}
       >
-        <Text style={{ fontSize: 24, color: "white" }}>{item.name}</Text>
+        <Text style={{ fontSize: 24, color: "white" }}>{deck.name}</Text>
         <Text style={{ fontSize: 18, color: "white" }}>
-          {item.cards.length} card{item.cards.length !== 1 && "s"}
+          {deck.cards.length} card{deck.cards.length !== 1 && "s"}
         </Text>
       </TouchableOpacity>
     );
+  };
+
+  openDeckPage = deck => {
+    console.log(deck);
+    const { navigation } = this.props;
+    console.log(navigation);
+    navigation.push("Deck Page", deck);
   };
 
   openAddDeckPage = () => {
@@ -36,8 +45,11 @@ class Decks extends React.Component {
     return (
       <View style={styles.constainer}>
         <StatusBar />
-        {!!decks.length ? (
-          <FlatList data={decks} renderItem={this.renderDeckItem} />
+        {!!Object.keys(decks).length ? (
+          <FlatList
+            data={Object.keys(decks)}
+            renderItem={this.renderDeckItem}
+          />
         ) : (
           <View style={styles.infoTextContainer}>
             <Text style={styles.infoTxt}>No Decks :(</Text>

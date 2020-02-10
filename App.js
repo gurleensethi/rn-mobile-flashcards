@@ -7,6 +7,7 @@ import Decks from "./componenets/Decks";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import AddDeck from "./componenets/AddDeck";
+import DeckPage from "./componenets/DeckPage";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,13 @@ export default function App() {
               options={{ title: "Decks" }}
             />
             <Stack.Screen name="Add Deck" component={AddDeck} />
+            <Stack.Screen
+              name="Deck Page"
+              component={DeckPage}
+              options={({ route }) => {
+                return { title: route.params.name };
+              }}
+            />
           </Stack.Navigator>
         </View>
       </Provider>

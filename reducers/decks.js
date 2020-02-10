@@ -3,14 +3,15 @@ import { ADD_DECK } from "../actions/decks";
 export default function decks(state = [], action) {
   switch (action.type) {
     case ADD_DECK: {
-      return [
+      const id = Date.now();
+      return {
         ...state,
-        {
+        [id]: {
+          id,
           name: action.name,
-          id: Date.now(),
           cards: []
         }
-      ];
+      };
     }
     default:
       return state;
