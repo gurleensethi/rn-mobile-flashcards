@@ -6,10 +6,11 @@ import {
   StatusBar,
   FlatList,
   StyleSheet,
-  TouchableOpacity
+  Platform
 } from "react-native";
 import PrimaryButton from "./PrimaryButton";
 import Deck from "./Deck";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 class Decks extends React.Component {
   renderDeckItem = ({ item }) => {
@@ -36,7 +37,7 @@ class Decks extends React.Component {
   render() {
     const { decks } = this.props;
     return (
-      <View style={styles.constainer}>
+      <SafeAreaView style={styles.constainer}>
         <StatusBar />
         {!!Object.keys(decks).length ? (
           <FlatList
@@ -51,7 +52,7 @@ class Decks extends React.Component {
           </View>
         )}
         <PrimaryButton text="Add New Deck" onPress={this.openAddDeckPage} />
-      </View>
+      </SafeAreaView>
     );
   }
 }
