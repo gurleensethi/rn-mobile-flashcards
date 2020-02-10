@@ -31,7 +31,13 @@ class DeckPage extends React.Component {
             padding: 8
           }}
           onPress={this.openTakeQuizPage}
+          disabled={deck.cards.length === 0}
         />
+        {deck.cards.length === 0 && (
+          <View style={styles.infoTextContainer}>
+            <Text>(Add cards to take quiz)</Text>
+          </View>
+        )}
         <PrimaryButton
           text="Add Card"
           style={{
@@ -65,5 +71,9 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 16
+  },
+  infoTextContainer: {
+    alignItems: "center",
+    marginTop: 16
   }
 });
