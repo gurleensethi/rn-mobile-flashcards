@@ -4,7 +4,7 @@ import { addDecks } from "./decks";
 export function handleInitialData() {
   return dispatch => {
     getDecks().then(decks => {      
-      dispatch(addDecks(decks));
+      dispatch(addDecks(decks || []));
     });
   };
 }

@@ -6,12 +6,12 @@ import PrimaryButton from "./PrimaryButton";
 class DeckPage extends React.Component {
   openAddCardPage = () => {
     const { navigation, deck } = this.props;
-    navigation.push("Add Card", deck);
+    navigation.push("Add Card", { id: deck.id, name: deck.name });
   };
 
   openTakeQuizPage = () => {
-    const { navigation, deck } = this.props;
-    navigation.push("Take Quiz", deck);
+    const { navigation, deck } = this.props;    
+    navigation.push("Take Quiz", { id: deck.id, name: deck.name });
   };
 
   render() {
