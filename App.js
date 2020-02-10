@@ -12,12 +12,14 @@ import AddCard from "./componenets/AddCard";
 import TakeQuiz from "./componenets/TakeQuiz";
 import middleware from "./middleware";
 import { handleInitialData } from "./actions/shared";
+import { setNotification } from "./utils/notification";
 
 const store = createStore(reducers, middleware);
 const Stack = createStackNavigator();
 
 export default class App extends React.Component {
   componentDidMount() {
+    setNotification();
     store.dispatch(handleInitialData());
   }
 
@@ -30,24 +32,30 @@ export default class App extends React.Component {
               <Stack.Screen
                 name="Decks"
                 component={Decks}
-                options={{ title: "Decks" }}
+                options={{ title: "Decks " }}
               />
               <Stack.Screen name="Add Deck" component={AddDeck} />
               <Stack.Screen
                 name="Deck Page"
                 component={DeckPage}
                 options={({ route }) => {
-                  return { title: route.params.name };
+                  return { title: `${route.params.name}    ` };
                 }}
               />
               <Stack.Screen
                 name="Add Card"
                 component={AddCard}
                 options={({ route }) => {
-                  return { title: route.params.name };
+                  return { title: "Add Card   " };
                 }}
               />
-              <Stack.Screen name="Take Quiz" component={TakeQuiz} />
+              <Stack.Screen
+                name="Take Quiz"
+                component={TakeQuiz}
+                options={{
+                  title: "Take Quiz "
+                }}
+              />
             </Stack.Navigator>
           </View>
         </Provider>
