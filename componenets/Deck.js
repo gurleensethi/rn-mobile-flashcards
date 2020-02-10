@@ -9,7 +9,8 @@ import {
 
 export default class Deck extends React.Component {
   state = {
-    zoom: new Animated.Value(1.0)
+    zoom: new Animated.Value(1.0),
+    rotation: new Animated.Value(0.0)
   };
 
   zoomIn = () => {
@@ -17,17 +18,30 @@ export default class Deck extends React.Component {
       Animated.timing(this.state.zoom, { toValue: 0.8, duration: 200 }),
       Animated.spring(this.state.zoom, { toValue: 0.9, duration: 100 })
     ]).start();
+
+    Animated.sequence([
+      Animated.timing(this.state.rotation, { toValue: -1.2, duration: 200 }),
+      Animated.spring(this.state.rotation, { toValue: -1.0, duration: 100 })
+    ]).start();
   };
 
   zoomOut = () => {
     Animated.timing(this.state.zoom, { toValue: 1.0, duration: 200 }).start();
+    Animated.timing(this.state.rotation, {
+      toValue: 0.0,
+      duration: 200
+    }).start();
   };
 
   render() {
     const { deck, openDeckPage } = this.props;
     return (
       <Animated.View
-        style={{ scaleX: this.state.zoom, scaleY: this.state.zoom }}
+        style={{
+          scaleX: this.state.zoom,
+          scaleY: this.state.zoom,
+          rotation: this.state.rotation
+        }}
       >
         <TouchableOpacity
           style={styles.listItem}
